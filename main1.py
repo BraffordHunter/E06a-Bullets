@@ -78,7 +78,6 @@ class Window(arcade.Window):
     def setup(self):
         '''
         Set up enemies
-        '''
         for i in range(NUM_ENEMIES):
             x = 120 * (i+1) + 40
             y = 500
@@ -88,11 +87,10 @@ class Window(arcade.Window):
     def update(self, delta_time):
         self.bullet_list.update()
         for e in self.enemy_list:
-            # check for collision
-            # for every bullet that hits, decrease the hp and then see if it dies
-            # increase the score
-            # e.kill() will remove the enemy sprite from the game
-            # the pass statement is a placeholder. Remove line 81 when you add your code
+        bullet=Bullet((x,y),(0,10),BULLET_DAMAGE)
+        x=self.player.center_x
+        y=self.player.center_y + 15
+        self.player.kill
     def on_draw(self):
         arcade.start_render()
         arcade.draw_text(str(self.score), 20, SCREEN_HEIGHT - 40, open_color.white, 16)
