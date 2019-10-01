@@ -93,8 +93,6 @@ class Window(arcade.Window):
             # increase the score
             # e.kill() will remove the enemy sprite from the game
             # the pass statement is a placeholder. Remove line 81 when you add your code
-            pass
-
     def on_draw(self):
         arcade.start_render()
         arcade.draw_text(str(self.score), 20, SCREEN_HEIGHT - 40, open_color.white, 16)
@@ -110,9 +108,7 @@ class Window(arcade.Window):
 
     def on_mouse_press(self, x, y, button, modifiers):
         if button == arcade.MOUSE_BUTTON_LEFT:
-            #fire a bullet
-            #the pass statement is a placeholder. Remove line 97 when you add your code
-            pass
+        self.bullet_list.append(bullet)
 
 def main():
     window = Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
