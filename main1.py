@@ -100,7 +100,7 @@ class Window(arcade.Window):
 
     def on_mouse_motion(self, x, y, dx, dy):
         '''
-        The player moves left and right with the mouse
+        The player moves left and right with the mouse, The player shoots bullets with the mouse.
         '''
         self.player.center_x = x
 
