@@ -78,19 +78,25 @@ class Window(arcade.Window):
     def setup(self):
         '''
         Set up enemies
+        '''
         for i in range(NUM_ENEMIES):
             x = 120 * (i+1) + 40
             y = 500
             enemy = Enemy((x,y))
             self.enemy_list.append(enemy)            
 
-    def update(self, delta_time):
+    def update(self, delta_time): 
         self.bullet_list.update()
         for e in self.enemy_list:
-        bullet=Bullet((x,y),(0,10),BULLET_DAMAGE)
-        x=self.player.center_x
-        y=self.player.center_y + 15
-        self.player.kill
+            hit = arcade.check_for_collision_with_list(e, self.bullet_list)
+            for h in hit:
+                e.hp=e.hp-h.damage
+                h.kill()
+                if e.hp<=0:
+                    self.score += KILL_SCORE
+                    
+                    e.kill()
+            pass
     def on_draw(self):
         arcade.start_render()
         arcade.draw_text(str(self.score), 20, SCREEN_HEIGHT - 40, open_color.white, 16)
@@ -106,7 +112,10 @@ class Window(arcade.Window):
 
     def on_mouse_press(self, x, y, button, modifiers):
         if button == arcade.MOUSE_BUTTON_LEFT:
-        self.bullet_list.append(bullet)
+            x = self.player.center_x
+            y = self.player.center_y + 15
+            bullet = Bullet((x,y),(0,10),BULLET_DAMAGE)
+            self.bullet_list.append(bullet)
 
 def main():
     window = Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
